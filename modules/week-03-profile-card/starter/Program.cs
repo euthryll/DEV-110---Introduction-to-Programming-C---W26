@@ -9,12 +9,12 @@ public class Program
         Console.WriteLine("╔════════════════════════════════════════════╗");
         Console.WriteLine("║         STUDENT PROFILE CARD               ║");
         Console.WriteLine("╚════════════════════════════════════════════╝\n");
-        //Variables below:
+
+        // Variables below:
         string usersName = "placeholder";
         string userHometown = "placeholder, placeholder";
         string userColor = "placeholder";
         string userDreamjob = "placeholder";
-
 
         // TODO: Collect PERSONAL INFORMATION (strings)
         // - Full name
@@ -52,7 +52,6 @@ public class Program
         string timeChoice = Console.ReadLine().ToLower();
         bool userFulltime = timeChoice == "yes" || timeChoice == "y";
 
-
         // TODO: Collect ADDITIONAL DETAILS
         // - Age (int)
         // - Height in inches (double)
@@ -68,7 +67,6 @@ public class Program
         Console.WriteLine($"{userHeight} recorded, Please enter your favorite number");
         userFavNumber = int.Parse(Console.ReadLine());
 
-
         // TODO: CALCULATE derived information
         // - Birth year = 2026 - age
         // - Years to graduation = graduationYear - 2026
@@ -76,13 +74,20 @@ public class Program
         // - Is honor student? = gpa >= 3.5
         // - Age in months = age * 12
         bool honorStudent = false;
-        int userBirthYear = (2026 - userAge);
-        int userYearsTillGrad = (userGradyear - 2026);
-        int HeightFeet = (int)(userHeight / 12);
-        double HeightInches = (userHeight % 12);
-        if (userGPA >= 3.5) { honorStudent = true; }
-        else { honorStudent = false; }
-        double userAgeMonths = (userAge * 12);
+        int userBirthYear = 2026 - userAge;
+        int userYearsTillGrad = userGradyear - 2026;
+        int heightFeet = (int)(userHeight / 12);
+        double heightInches = userHeight % 12;
+        if (userGPA >= 3.5)
+        {
+            honorStudent = true;
+        }
+        else
+        {
+            honorStudent = false;
+        }
+
+        double userAgeMonths = userAge * 12;
 
         // TODO: DISPLAY formatted profile card
         // Use sections with headers:
@@ -103,21 +108,13 @@ public class Program
         Console.WriteLine($"Age: {userAge}");
         Console.WriteLine($"Birth year: {userBirthYear}");
         Console.WriteLine($"Years until graduation: {userYearsTillGrad}");
-        Console.WriteLine($"\nHeight: {HeightFeet} feet {HeightInches} inches");
+        Console.WriteLine($"\nHeight: {heightFeet} feet {heightInches} inches");
         Console.WriteLine($"Height in inches: {userHeight}");
         Console.WriteLine($"Honor student: {honorStudent}");
         Console.WriteLine($"Age in months: {userAgeMonths}");
         Console.WriteLine($"Favorite number: {userFavNumber}");
 
-
-
-
-
-
-
-
         Console.WriteLine("\n═══════════════════════════════════════════");
         Console.WriteLine("Profile complete! Good luck with your studies!");
-
     }
 }
