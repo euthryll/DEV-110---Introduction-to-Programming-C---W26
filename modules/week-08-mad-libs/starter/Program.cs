@@ -51,12 +51,11 @@ public class Program
     //   2) The Standup Meeting
     // - Use ReadIntInRange to get user's choice (1-2)
     // - Return the appropriate StoryTemplate (see template details in README)
-private static StoryTemplate ChooseTemplate()
-
+    private static StoryTemplate ChooseTemplate()
     {
-    StoryTemplate zoo = new StoryTemplate(
-        "Debugging at the Zoo",
-        new string[]
+        StoryTemplate zoo = new StoryTemplate(
+            "Debugging at the Zoo",
+            new string[]
         {
         "an adjective ",
         "an animal (plural) ",
@@ -65,16 +64,14 @@ private static StoryTemplate ChooseTemplate()
         "a debugging tool (example: breakpoint) ",
         "a number ",
         "an emotion ",
-        "an exclamation "
+        "an exclamation ",
         },
-        "Today I visited the {0} zoo. I saw {1} {2} while writing {3}. " +
-        "I used a {4} {5} times until the bug disappeared. I felt {6} and yelled, \"{7}!\""
-    );
+            "Today I visited the {0} zoo. I saw {1} {2} while writing {3}. " + "I used a {4} {5} times until the bug disappeared. I felt {6} and yelled, \"{7}!\"");
 
-    StoryTemplate standup = new StoryTemplate(
-        "The Standup Meeting",
-        new string[]
-        {
+        StoryTemplate standup = new StoryTemplate(
+            "The Standup Meeting",
+            new string[]
+            {
             "a name ",
             "an adjective ",
             "a noun ",
@@ -82,11 +79,9 @@ private static StoryTemplate ChooseTemplate()
             "a number ",
             "a plural noun ",
             "a type of bug (example: null reference) ",
-            "a snack "
+            "a snack ",
             },
-            "{0} joined the {1} standup and grabbed a {2}. They {3} {4} times while " +
-            "discussing {5} and fixing a {6}. Then everyone celebrated with {7}."
-    );
+            "{0} joined the {1} standup and grabbed a {2}. They {3} {4} times while " + "discussing {5} and fixing a {6}. Then everyone celebrated with {7}.");
 
         int choice;
         do
@@ -99,7 +94,6 @@ private static StoryTemplate ChooseTemplate()
 
         return (choice == 1) ? zoo : standup;
     }
-
 
     // TODO 3: Implement CollectWords
     // This method should:
@@ -116,6 +110,7 @@ private static StoryTemplate ChooseTemplate()
         {
             words[i] = ReadNonEmptyString($"Enter {template.Prompts[i]}:");
         }
+
         Console.WriteLine();
         return words;
     }
@@ -136,9 +131,14 @@ private static StoryTemplate ChooseTemplate()
             string input = (Console.ReadLine() ?? string.Empty).Trim();
 
             if (input.Equals("y", StringComparison.OrdinalIgnoreCase))
+            {
                 return true;
+            }
+
             if (input.Equals("n", StringComparison.OrdinalIgnoreCase))
+            {
                 return false;
+            }
 
             Console.WriteLine("Please enter 'y' or 'n'");
         }
@@ -183,7 +183,9 @@ private static StoryTemplate ChooseTemplate()
             string input = (Console.ReadLine() ?? string.Empty).Trim();
 
             if (!string.IsNullOrWhiteSpace(input))
+            {
                 return input;
+            }
 
             Console.WriteLine("Input can't be empty, try again.");
         }

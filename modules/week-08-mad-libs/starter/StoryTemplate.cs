@@ -38,6 +38,7 @@ public class StoryTemplate
         {
             throw new ArgumentException($"Expected {Prompts.Length} words but got {words.Length}");
         }
+
         return FormatStory(words);
     }
 
@@ -51,9 +52,9 @@ public class StoryTemplate
         object[] story = new object[words.Length];
         for (int i = 0; i < words.Length; i++)
         {
-            story [i] = words[i];
-
+            story[i] = words[i];
         }
+
         return string.Format(TemplateText, story);
     }
 }
