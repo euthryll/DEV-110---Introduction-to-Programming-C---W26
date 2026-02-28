@@ -51,10 +51,55 @@ public class Program
     //   2) The Standup Meeting
     // - Use ReadIntInRange to get user's choice (1-2)
     // - Return the appropriate StoryTemplate (see template details in README)
-    private static StoryTemplate ChooseTemplate()
+private static StoryTemplate ChooseTemplate()
+
     {
-        throw new NotImplementedException();
+    StoryTemplate zoo = new StoryTemplate(
+        "Debugging at the Zoo",
+        new string[]
+        {
+        "an adjective ",
+        "an animal (plural) ",
+        "a verb ending in -ing ",
+        "a programming language ",
+        "a debugging tool (example: breakpoint) ",
+        "a number ",
+        "an emotion ",
+        "an exclamation "
+        },
+        "Today I visited the {0} zoo. I saw {1} {2} while writing {3}. " +
+        "I used a {4} {5} times until the bug disappeared. I felt {6} and yelled, \"{7}!\""
+    );
+
+    StoryTemplate standup = new StoryTemplate(
+        "The Standup Meeting",
+        new string[]
+        {
+            "a name ",
+            "an adjective ",
+            "a noun ",
+            "a verb (past tense) ",
+            "a number ",
+            "a plural noun ",
+            "a type of bug (example: null reference) ",
+            "a snack "
+            },
+            "{0} joined the {1} standup and grabbed a {2}. They {3} {4} times while " +
+            "discussing {5} and fixing a {6}. Then everyone celebrated with {7}."
+    );
+
+        int choice;
+        do
+        {
+            Console.WriteLine("1) Debugging at the Zoo");
+            Console.WriteLine("2) The Standup Meeting");
+            choice = ReadIntInRange("Choose a template (1-2): ", 1, 2);
+        }
+        while (choice != 1 && choice != 2);
+
+        return (choice == 1) ? zoo : standup;
     }
+
 
     // TODO 3: Implement CollectWords
     // This method should:
@@ -65,7 +110,14 @@ public class Program
     // - Return the array of collected words
     private static string[] CollectWords(StoryTemplate template)
     {
-        throw new NotImplementedException();
+        Logger.Info($"Collecting {template.Prompts.Length} words for: {template.Title}");
+        string[] words = new string[template.Prompts.Length];
+        for (int i = 0; i < template.Prompts.Length; i++)
+        {
+            words[i] = ReadNonEmptyString($"Enter {template.Prompts[i]}:");
+        }
+        Console.WriteLine();
+        return words;
     }
 
     // TODO 4: Implement ReadYesNo
@@ -78,7 +130,18 @@ public class Program
     // - Return true for "y", false for "n"
     private static bool ReadYesNo(string prompt)
     {
-        throw new NotImplementedException();
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            if (input.Equals("y", StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (input.Equals("n", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            Console.WriteLine("Please enter 'y' or 'n'");
+        }
     }
 
     // TODO 5: Implement ReadIntInRange
@@ -91,7 +154,18 @@ public class Program
     // - Return the valid integer
     private static int ReadIntInRange(string prompt, int min, int max)
     {
-        throw new NotImplementedException();
+        int value;
+        bool isValid;
+
+        do
+        {
+            Console.Write(prompt);
+            string input = Console.ReadLine() ?? string.Empty;
+            isValid = int.TryParse(input, out value);
+        }
+        while (!isValid || value < min || value > max);
+
+        return value;
     }
 
     // TODO 6: Implement ReadNonEmptyString
@@ -103,6 +177,15 @@ public class Program
     // - Return the valid non-empty string
     private static string ReadNonEmptyString(string prompt)
     {
-        throw new NotImplementedException();
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            if (!string.IsNullOrWhiteSpace(input))
+                return input;
+
+            Console.WriteLine("Input can't be empty, try again.");
+        }
     }
 }
